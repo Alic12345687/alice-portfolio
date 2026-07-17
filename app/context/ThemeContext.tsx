@@ -1,7 +1,7 @@
 // app/context/ThemeContext.tsx
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 interface ThemeContextType {
   isDark: boolean;
@@ -15,12 +15,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const toggleTheme = () => setIsDark((prev) => !prev);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+  }, [isDark]);
+
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <div className={isDark ? "dark" : ""}>
-        <div className="min-h-screen bg-[#f5f1ea] text-[#201c18] transition-colors duration-500 dark:bg-[#0f1216] dark:text-[#f2ede3]">
-          {children}
-        </div>
+      <div className="min-h-screen bg-[#f5f1ea] text-[#201c18] transition-colors duration-500 dark:bg-[#0f1216] dark:text-[#f2ede3]">
+        {children}
       </div>
     </ThemeContext.Provider>
   );

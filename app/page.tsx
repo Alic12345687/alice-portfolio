@@ -1,7 +1,6 @@
 // app/page.tsx
 import fs from "fs";
 import path from "path";
-import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -56,13 +55,13 @@ export default async function Home() {
   const experiences = parseExperienceMdx(raw);
 
   return (
-    <ThemeProvider>
+    <>
       <Navbar />
       <Hero />
       <About />
       <ExperienceClient experiences={experiences} />
       <Projects />
       <Footer />
-    </ThemeProvider>
+    </>
   );
 }
