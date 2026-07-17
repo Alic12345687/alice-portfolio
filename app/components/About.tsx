@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function About() {
+  const { language } = useLanguage();
   const skills = [
     "Python",
     "React",
@@ -26,37 +28,52 @@ export default function About() {
       >
         <div>
           <h2 className="mb-4 text-sm uppercase tracking-[0.3em] opacity-60">
-            About
+            {language === "lo" ? "ກ່ຽວກັບ" : "About"}
           </h2>
           <p className="text-xl leading-relaxed opacity-85 md:text-2xl">
-            I&apos;m a Computer Science student at Soutsaka Institute of
-            Technology, with a backend focus and a strong interest in building
-            practical systems that feel clean, reliable, and easy to use.
+            {language === "lo"
+              ? "ຂ້ອຍເປັນນັກສຶກສາສາຂາ Computer Science ທີ່ Soutsaka Institute of Technology ໂດຍສົນໃຈດ້ານ backend ແລະມັກສ້າງລະບົບທີ່ໃຊ້ງານໄດ້ຈິງ ສະອາດ ແລະເຊື່ອຖືໄດ້."
+              : "I&apos;m a Computer Science student at Soutsaka Institute of Technology, with a backend focus and a strong interest in building practical systems that feel clean, reliable, and easy to use."}
           </p>
 
           <div className="mt-8 rounded-2xl border border-black/8 bg-white/40 p-5 text-sm leading-6 opacity-80 backdrop-blur dark:border-white/10 dark:bg-white/5">
-            I care about the details that make software feel solid: structure,
-            readability, speed, and a calm visual rhythm.
+            {language === "lo"
+              ? "ຂ້ອຍໃສ່ໃຈລາຍລະອຽດທີ່ເຮັດໃຫ້ software ມີຄວາມໝັ້ນຄົງ: ໂຄງສ້າງ, ການອ່ານງ່າຍ, ຄວາມໄວ, ແລະຈັງຫວະສາຍຕາທີ່ສະຫງົບ."
+              : "I care about the details that make software feel solid: structure, readability, speed, and a calm visual rhythm."}
           </div>
         </div>
 
         <div className="space-y-3">
           <div className="rounded-2xl border border-black/8 bg-white/40 p-5 backdrop-blur dark:border-white/10 dark:bg-white/5">
             <p className="text-[11px] uppercase tracking-[0.25em] opacity-50">
-              Quick facts
+              {language === "lo" ? "ຂໍ້ມູນສັ້ນ" : "Quick facts"}
             </p>
             <div className="mt-4 grid gap-3 text-sm">
               <div className="flex items-center justify-between gap-4">
-                <span className="opacity-60">Location</span>
+                <span className="opacity-60">
+                  {language === "lo" ? "ທີ່ຢູ່" : "Location"}
+                </span>
                 <span className="font-medium">Khamhoung Village, Laos</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="opacity-60">Open to</span>
-                <span className="font-medium">Internship & junior roles</span>
+                <span className="opacity-60">
+                  {language === "lo" ? "ເປີດຮັບ" : "Open to"}
+                </span>
+                <span className="font-medium">
+                  {language === "lo"
+                    ? "ຝຶກງານ ແລະ ຕຳແໜ່ງ junior"
+                    : "Internship & junior roles"}
+                </span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="opacity-60">Strength</span>
-                <span className="font-medium">Backend logic & teamwork</span>
+                <span className="opacity-60">
+                  {language === "lo" ? "ຈຸດແຂງ" : "Strength"}
+                </span>
+                <span className="font-medium">
+                  {language === "lo"
+                    ? "ເຫດຜົນ backend ແລະ teamwork"
+                    : "Backend logic & teamwork"}
+                </span>
               </div>
             </div>
           </div>

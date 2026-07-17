@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { language } = useLanguage();
   return (
     <section className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:px-10 md:pb-24 md:pt-20">
       <div className="grid items-center gap-10 md:grid-cols-[1.08fr_0.92fr]">
@@ -14,7 +16,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="mb-6 text-sm uppercase tracking-[0.35em] opacity-55"
           >
-            Backend Developer Intern
+            {language === "lo" ? "ນັກຝຶກງານ Backend" : "Backend Developer Intern"}
           </motion.p>
 
           <motion.h1
@@ -23,9 +25,19 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mb-7 text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl"
           >
-            Backend-minded,
-            <br />
-            clean interfaces.
+            {language === "lo" ? (
+              <>
+                ຄິດແບບ backend,
+                <br />
+                ແຕ່ງຫນ້າຕາໃຫ້ສະອາດ.
+              </>
+            ) : (
+              <>
+                Backend-minded,
+                <br />
+                clean interfaces.
+              </>
+            )}
           </motion.h1>
 
           <motion.p
@@ -34,9 +46,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8 max-w-xl text-base leading-7 opacity-75 md:text-lg"
           >
-            I&apos;m Sikunya Phommavanh, a backend developer intern and Computer
-            Science student from Vientiane. I like turning structured ideas
-            into simple, practical, and professional web experiences.
+            {language === "lo"
+              ? "ຂ້ອຍແມ່ນ Sikunya Phommavanh, ນັກຝຶກງານ backend ແລະນັກສຶກສາ Computer Science ຈາກວຽງຈັນ. ຂ້ອຍມັກປ່ຽນໄອເດຍທີ່ມີໂຄງສ້າງໃຫ້ເປັນ web experience ທີ່ງ່າຍ, ໃຊ້ງານໄດ້ຈິງ, ແລະເບິ່ງມືອາຊີບ."
+              : "I&apos;m Sikunya Phommavanh, a backend developer intern and Computer Science student from Vientiane. I like turning structured ideas into simple, practical, and professional web experiences."}
           </motion.p>
 
           <motion.div
@@ -46,9 +58,25 @@ export default function Hero() {
             className="mb-8 grid gap-3 sm:grid-cols-3"
           >
             {[
-              { label: "Focus", value: "Backend + Web systems" },
-              { label: "Style", value: "Minimal, professional" },
-              { label: "Tools", value: "Python, React, GitHub" },
+              {
+                label: language === "lo" ? "ຈຸດສຸມ" : "Focus",
+                value:
+                  language === "lo"
+                    ? "Backend + ລະບົບ Web"
+                    : "Backend + Web systems",
+              },
+              {
+                label: language === "lo" ? "ສະໄຕລ໌" : "Style",
+                value:
+                  language === "lo" ? "ເອີ້ນງ່າຍ, ມືອາຊີບ" : "Minimal, professional",
+              },
+              {
+                label: language === "lo" ? "ເຄື່ອງມື" : "Tools",
+                value:
+                  language === "lo"
+                    ? "Python, React, GitHub"
+                    : "Python, React, GitHub",
+              },
             ].map((item) => (
               <div
                 key={item.label}
@@ -72,13 +100,13 @@ export default function Hero() {
               href="#work"
               className="rounded-full bg-[#1d1a17] px-6 py-3 text-sm font-medium text-[#f4f0e8] transition-opacity hover:opacity-85 dark:bg-[#f4efe6] dark:text-[#0f1115]"
             >
-              View my work
+              {language === "lo" ? "ເບິ່ງຜົນງານ" : "View my work"}
             </a>
             <a
               href="#contact"
               className="rounded-full border border-black/15 px-6 py-3 text-sm font-medium transition-colors hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
             >
-              Get in touch
+              {language === "lo" ? "ຕິດຕໍ່ຂ້ອຍ" : "Get in touch"}
             </a>
           </motion.div>
         </div>
@@ -102,12 +130,16 @@ export default function Hero() {
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded-full border border-black/10 bg-white/45 px-4 py-3 text-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-            <span className="opacity-70">Backend Developer Intern</span>
+            <span className="opacity-70">
+              {language === "lo" ? "ນັກຝຶກງານ Backend" : "Backend Developer Intern"}
+            </span>
             <span className="opacity-70">Soutsaka Institute</span>
           </div>
 
           <p className="mx-auto mt-5 max-w-sm text-center text-sm italic opacity-60">
-            &quot;Good design should feel quiet, but never forgettable.&quot;
+            {language === "lo"
+              ? "“ດີໄຊນ໌ທີ່ດີຄວນເບິ່ງສະຫງົບ ແຕ່ບໍ່ຄວນຖືກລືມ.”"
+              : "&quot;Good design should feel quiet, but never forgettable.&quot;"}
           </p>
         </motion.div>
       </div>

@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 import type { ExperienceItem } from "./page";
 
 interface ExperienceClientProps {
@@ -11,6 +12,7 @@ interface ExperienceClientProps {
 export default function ExperienceClient({
   experiences,
 }: ExperienceClientProps) {
+  const { language } = useLanguage();
   return (
     <section
       id="experience"
@@ -19,15 +21,18 @@ export default function ExperienceClient({
       <div className="mb-10 flex items-end justify-between gap-6">
         <div>
           <h2 className="text-sm uppercase tracking-[0.3em] opacity-60">
-            Experience
+            {language === "lo" ? "ປະສົບການ" : "Experience"}
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 opacity-65">
-            A short timeline of the roles that shaped how I think about product,
-            systems, and collaboration.
+            {language === "lo"
+              ? "ໄລຍະເວລາສັ້ນໆຂອງບົດບາດທີ່ຫຼໍ່ຫຼອມວິທີຄິດຂອງຂ້ອຍກ່ຽວກັບ product, ລະບົບ, ແລະການຮ່ວມງານ."
+              : "A short timeline of the roles that shaped how I think about product, systems, and collaboration."}
           </p>
         </div>
         <p className="hidden text-sm opacity-50 md:block">
-          Built with care, shipped with intent
+          {language === "lo"
+            ? "ສ້າງດ້ວຍຄວາມໃສ່ໃຈ, ສົ່ງມອບດ້ວຍເຈດຈຳນົງ"
+            : "Built with care, shipped with intent"}
         </p>
       </div>
 

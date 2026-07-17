@@ -32,3 +32,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+body.lang-lo {
+  font-family: var(--font-noto-sans-lao), var(--font-geist-sans), Arial,
+    Helvetica, sans-serif;
+}

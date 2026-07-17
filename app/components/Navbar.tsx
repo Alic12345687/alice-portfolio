@@ -1,11 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 
 export default function Navbar() {
   const { isDark, toggleTheme } = useTheme();
-  const links = ["About", "Experience", "Work", "Contact"];
+  const { language, toggleLanguage } = useLanguage();
+  const links = [
+    { id: "about", label: language === "lo" ? "ກ່ຽວກັບ" : "About" },
+    { id: "experience", label: language === "lo" ? "ປະສົບການ" : "Experience" },
+    { id: "work", label: language === "lo" ? "ຜົນງານ" : "Work" },
+    { id: "contact", label: language === "lo" ? "ຕິດຕໍ່" : "Contact" },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 border-b border-black/6 bg-[#f5f1ea]/78 backdrop-blur-md dark:border-white/10 dark:bg-[#0f1216]/78">
@@ -17,18 +24,57 @@ export default function Navbar() {
         <div className="hidden items-center gap-8 text-sm opacity-70 md:flex">
           {links.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
+              key={link.id}
+              href={`#${link.id}`}
               className="transition-opacity hover:opacity-100"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
 
-        <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+        <div className="flex items-center gap-3">
+          <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
+          <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+        </div>
       </div>
     </nav>
+  );
+}
+
+function LanguageToggle({
+  language,
+  toggleLanguage,
+}: {
+  language: "en" | "lo";
+  toggleLanguage: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={toggleLanguage}
+      aria-label="Toggle language"
+      className="relative flex h-8 items-center rounded-full border border-black/10 bg-black/5 px-1 text-[11px] font-semibold uppercase tracking-[0.2em] dark:border-white/10 dark:bg-white/10"
+    >
+      <span
+        className={`rounded-full px-2.5 py-1 transition-colors ${
+          language === "en"
+            ? "bg-black text-white dark:bg-white dark:text-black"
+            : "opacity-55"
+        }`}
+      >
+        EN
+      </span>
+      <span
+        className={`rounded-full px-2.5 py-1 transition-colors ${
+          language === "lo"
+            ? "bg-black text-white dark:bg-white dark:text-black"
+            : "opacity-55"
+        }`}
+      >
+        ລາວ
+      </span>
+    </button>
   );
 }
 
@@ -41,6 +87,7 @@ function ThemeToggle({
 }) {
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       aria-label="Toggle dark mode"
       className={`relative flex h-8 w-14 items-center rounded-full p-1 transition-colors duration-300 ${
