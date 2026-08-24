@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
@@ -6,10 +6,12 @@ import { useLanguage } from "../context/LanguageContext";
 export default function About() {
   const { language } = useLanguage();
   const skills = [
-    "Python",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
     "React",
     "GitHub",
-    "SQL",
     "Arduino / IoT",
     "HTML / CSS / JavaScript",
   ];
@@ -32,13 +34,13 @@ export default function About() {
           </h2>
           <p className="text-xl leading-relaxed opacity-85 md:text-2xl">
             {language === "lo"
-              ? "ຂ້ອຍເປັນນັກສຶກສາສາຂາ Computer Science ທີ່ Soutsaka Institute of Technology ໂດຍສົນໃຈດ້ານ backend ແລະມັກສ້າງລະບົບທີ່ໃຊ້ງານໄດ້ຈິງ ສະອາດ ແລະເຊື່ອຖືໄດ້."
-              : "I&apos;m a Computer Science student at Soutsaka Institute of Technology, with a backend focus and a strong interest in building practical systems that feel clean, reliable, and easy to use."}
+              ? "ຂ້ອຍເປັນນັກສຶກສາ Computer Science ຢູ່ Soutsaka Institute of Technology ແລະສົນໃຈດ້ານ backend ເປັນພິເສດ. ຂ້ອຍມັກສ້າງລະບົບທີ່ໃຊ້ງານໄດ້ຈິງ ເບິ່ງສະອາດ ແລະພຶງພາໄດ້."
+              : "I’m a Computer Science student at Soutsaka Institute of Technology, with a backend focus and a strong interest in building practical systems that feel clean, reliable, and easy to use."}
           </p>
 
           <div className="mt-8 rounded-2xl border border-black/8 bg-white/40 p-5 text-sm leading-6 opacity-80 backdrop-blur dark:border-white/10 dark:bg-white/5">
             {language === "lo"
-              ? "ຂ້ອຍໃສ່ໃຈລາຍລະອຽດທີ່ເຮັດໃຫ້ software ມີຄວາມໝັ້ນຄົງ: ໂຄງສ້າງ, ການອ່ານງ່າຍ, ຄວາມໄວ, ແລະຈັງຫວະສາຍຕາທີ່ສະຫງົບ."
+              ? "ຂ້ອຍໃຫ້ຄວາມສຳຄັນກັບລາຍລະອຽດທີ່ຊ່ວຍໃຫ້ software ໝັ້ນຄົງຂຶ້ນ ເຊັ່ນ ໂຄງສ້າງທີ່ຊັດເຈນ ອ່ານງ່າຍ ແລະປະສົບການທີ່ສະຫງົບ."
               : "I care about the details that make software feel solid: structure, readability, speed, and a calm visual rhythm."}
           </div>
         </div>
@@ -51,17 +53,17 @@ export default function About() {
             <div className="mt-4 grid gap-3 text-sm">
               <div className="flex items-center justify-between gap-4">
                 <span className="opacity-60">
-                  {language === "lo" ? "ທີ່ຢູ່" : "Location"}
+                  {language === "lo" ? "ຢູ່ໃສ" : "Location"}
                 </span>
                 <span className="font-medium">Khamhoung Village, Laos</span>
               </div>
               <div className="flex items-center justify-between gap-4">
                 <span className="opacity-60">
-                  {language === "lo" ? "ເປີດຮັບ" : "Open to"}
+                  {language === "lo" ? "ພ້ອມຮັບ" : "Open to"}
                 </span>
                 <span className="font-medium">
                   {language === "lo"
-                    ? "ຝຶກງານ ແລະ ຕຳແໜ່ງ junior"
+                    ? "ຝຶກງານ ແລະ ວຽກ junior"
                     : "Internship & junior roles"}
                 </span>
               </div>
@@ -71,7 +73,7 @@ export default function About() {
                 </span>
                 <span className="font-medium">
                   {language === "lo"
-                    ? "ເຫດຜົນ backend ແລະ teamwork"
+                    ? "ຄິດເປັນລະບົບ ແລະເຮັດວຽກເປັນທີມ"
                     : "Backend logic & teamwork"}
                 </span>
               </div>

@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
+import IntroHero from "./components/IntroHero";
 import ExperienceClient from "./experience/ExperienceClient";
 
 export interface ExperienceItem {
@@ -56,12 +57,15 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
-      <Hero />
-      <About />
-      <ExperienceClient experiences={experiences} />
-      <Projects />
-      <Footer />
+      <IntroHero />
+      <main id="portfolio" className="portfolio-main">
+        <Navbar />
+        <Hero />
+        <About />
+        <ExperienceClient experiences={experiences} />
+        <Projects />
+        <Footer />
+      </main>
     </>
   );
 }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
@@ -15,7 +15,7 @@ export default function Projects() {
       color: "from-slate-500/12 to-slate-500/4",
       note:
         language === "lo"
-          ? "ສ້າງ web app ບໍລິຫານຮ້ານອາຫານພ້ອມ logic ດ້ານ backend ແລະເຄື່ອງມືຊ່ວຍພັດທະນາ."
+          ? "ພັດທະນາ web app ສຳລັບການຈັດການຮ້ານອາຫານ ພ້ອມ logic ຝັ່ງ backend ແລະເຄື່ອງມືທີ່ຊ່ວຍໃຫ້ການພັດທະນາລື່ນໄຫຼຂຶ້ນ."
           : "Built a restaurant management web app with backend logic and tooling support.",
     },
     {
@@ -24,7 +24,7 @@ export default function Projects() {
       color: "from-slate-500/12 to-slate-500/4",
       note:
         language === "lo"
-          ? "ໂຄງການຄວບຄຸມການເຂົ້າອອກດ້ວຍ Arduino ແລະ RFID ເພື່ອຄວາມປອດໄພ."
+          ? "ອອກແບບລະບົບຄວບຄຸມການເຂົ້າອອກ ໂດຍໃຊ້ Arduino ແລະ RFID ເພື່ອໃຫ້ການເປີດປິດປະຕູປອດໄພຂຶ້ນ."
           : "An access-control project using Arduino and RFID for secure door interaction.",
     },
     {
@@ -33,7 +33,7 @@ export default function Projects() {
       color: "from-slate-500/12 to-slate-500/4",
       note:
         language === "lo"
-          ? "ລົດຄວບຄຸມຈາກໂທລະສັບພ້ອມ Bluetooth communication ແລະ mobile control."
+          ? "ຄວບຄຸມລົດຈາກໂທລະສັບ ໂດຍໃຊ້ Bluetooth ແລະ mobile control."
           : "A remote-controlled vehicle project with Bluetooth communication and mobile control.",
     },
     {
@@ -42,7 +42,7 @@ export default function Projects() {
       color: "from-slate-500/12 to-slate-500/4",
       note:
         language === "lo"
-          ? "ໃຊ້ Gemini ແລະ Claude ເພື່ອຊ່ວຍເລັ່ງການ debug, ຈັດໂຄງສ້າງ, ແລະແກ້ໄຂບັນຫາ."
+          ? "ໃຊ້ Gemini ແລະ Claude ມາຊ່ວຍໃນການ debug, ຈັດໂຄງສ້າງ, ແລະຊ່ວຍຄິດຫາວິທີແກ້ບັນຫາ."
           : "Used Gemini and Claude to speed up debugging, structure, and problem solving.",
     },
   ];
@@ -52,7 +52,7 @@ export default function Projects() {
       className="mx-auto max-w-6xl border-t border-black/5 px-6 py-20 dark:border-white/10 md:px-10"
     >
       <h2 className="mb-10 text-sm uppercase tracking-[0.3em] opacity-60">
-        {language === "lo" ? "ຜົນງານເລືອກ" : "Selected Work"}
+        {language === "lo" ? "ຜົນງານທີ່ເລືອກ" : "Selected Work"}
       </h2>
 
       <div className="grid gap-6 md:grid-cols-2">

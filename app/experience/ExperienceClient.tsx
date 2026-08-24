@@ -1,4 +1,4 @@
-// app/experience/ExperienceClient.tsx
+﻿// app/experience/ExperienceClient.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -25,13 +25,13 @@ export default function ExperienceClient({
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 opacity-65">
             {language === "lo"
-              ? "ໄລຍະເວລາສັ້ນໆຂອງບົດບາດທີ່ຫຼໍ່ຫຼອມວິທີຄິດຂອງຂ້ອຍກ່ຽວກັບ product, ລະບົບ, ແລະການຮ່ວມງານ."
+              ? "ໄລຍະເວລາສັ້ນໆຂອງບົດບາດທີ່ຊ່ວຍຫຼໍ່ຫຼອມວິທີຄິດຂອງຂ້ອຍໃນເລື່ອງ product, systems, ແລະການເຮັດວຽກຮ່ວມກັນ."
               : "A short timeline of the roles that shaped how I think about product, systems, and collaboration."}
           </p>
         </div>
         <p className="hidden text-sm opacity-50 md:block">
           {language === "lo"
-            ? "ສ້າງດ້ວຍຄວາມໃສ່ໃຈ, ສົ່ງມອບດ້ວຍເຈດຈຳນົງ"
+            ? "ສ້າງດ້ວຍໃຈ ແລະສົ່ງມອບດ້ວຍຄວາມຕັ້ງໃຈ"
             : "Built with care, shipped with intent"}
         </p>
       </div>
@@ -60,9 +60,9 @@ function ExperienceCard({
       transition={{ duration: 0.6, delay: (index % 2) * 0.1, ease: "easeOut" }}
       className="group rounded-2xl border border-black/10 bg-white/35 p-8 transition-colors duration-300 hover:border-black/25 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/25"
     >
-      <h2 className="text-xl md:text-2xl font-semibold mb-2">{exp.title}</h2>
+      <h2 className="mb-2 text-xl font-semibold md:text-2xl">{exp.title}</h2>
 
-      <div className="flex flex-wrap items-center gap-2 mb-4 text-sm">
+      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
         <span className="font-bold">{exp.company}</span>
         {exp.period && (
           <>
@@ -72,7 +72,7 @@ function ExperienceCard({
         )}
       </div>
 
-      <p className="text-sm md:text-base leading-relaxed opacity-70">
+      <p className="text-sm leading-relaxed opacity-70 md:text-base">
         {exp.description}
       </p>
     </motion.div>

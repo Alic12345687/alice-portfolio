@@ -11,7 +11,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const toggleTheme = () => setIsDark((prev) => !prev);
 
@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <div className="min-h-screen bg-[#f5f1ea] text-[#201c18] transition-colors duration-500 dark:bg-[#0f1216] dark:text-[#f2ede3]">
+      <div className="min-h-screen bg-[#f4f6f8] text-[#0d1b2a] transition-colors duration-500 dark:bg-[#080b14] dark:text-[#edf3f7]">
         {children}
       </div>
     </ThemeContext.Provider>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useLanguage } from "../context/LanguageContext";
 
@@ -28,8 +28,8 @@ export default function Footer() {
           +856 20 97 570 974
         </a>
         <a href="mailto:sikunyaphommavanh@gmail.com" className="transition-opacity hover:opacity-100">
-        {language === "lo" ? "ອີເມວ" : "Email"}
-      </a>
+          {language === "lo" ? "ອີເມວ" : "Email"}
+        </a>
       </div>
 
       <div className="mt-3 flex gap-6 text-sm opacity-60">
@@ -46,7 +46,7 @@ export default function Footer() {
 
       <p className="mt-8 max-w-md text-sm leading-6 opacity-70">
         {language === "lo"
-          ? "ຂ້ອຍຢູ່ວຽງຈັນ ແລະເປີດຮັບວຽກຝຶກງານ ຫຼື junior backend roles ທີ່ໃຫ້ຂ້ອຍໄດ້ຮຽນຮູ້ຕໍ່ເນື່ອງ ແລະຊ່ວຍງານໃນທີມຈິງ."
+          ? "ຂ້ອຍຢູ່ວຽງຈັນ ແລະຍິນດີຮັບຝຶກງານ ຫຼືວຽກ junior backend ທີ່ໃຫ້ຂ້ອຍໄດ້ຮຽນຮູ້ຕໍ່ ແລະຊ່ວຍງານທີມໄດ້ຢ່າງດີ."
           : "I&apos;m based in Vientiane and open to internships or junior backend roles where I can keep learning and contribute to a real team."}
       </p>
 
