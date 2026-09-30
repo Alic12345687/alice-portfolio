@@ -33,7 +33,6 @@ const sectionReveal = {
 export default function PortfolioShell({ experiences }: PortfolioShellProps) {
   const { shouldAnimate } = useMotionPreferences();
   const prefersReducedMotion = useReducedMotion();
-  const [introChecked, setIntroChecked] = useState(false);
   const [skipIntro, setSkipIntro] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
@@ -42,12 +41,11 @@ export default function PortfolioShell({ experiences }: PortfolioShellProps) {
 
   const motionAllowed = shouldAnimate && !prefersReducedMotion;
   const showPortfolio = skipIntro || hasEntered;
-  const showIntro = introChecked && !skipIntro && !hasEntered && !isEntering;
+  const showIntro = !skipIntro && !hasEntered && !isEntering;
 
   useEffect(() => {
     const initialTimer = window.setTimeout(() => {
       setSkipIntro(Boolean(window.location.hash));
-      setIntroChecked(true);
     }, 0);
 
     return () => {
@@ -93,10 +91,6 @@ export default function PortfolioShell({ experiences }: PortfolioShellProps) {
     enterTimerRef.current = window.setTimeout(() => {
       setHasEntered(true);
     }, 450);
-  }
-
-  if (!introChecked) {
-    return <div className="intro-loading" aria-hidden="true" />;
   }
 
   return (

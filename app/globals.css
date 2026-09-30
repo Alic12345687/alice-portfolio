@@ -89,14 +89,9 @@ a {
   isolation: isolate;
 }
 
-.intro-loading,
 .intro-screen {
   min-height: 100vh;
   min-height: 100svh;
-}
-
-.intro-loading {
-  background: var(--background);
 }
 
 .intro-screen {
