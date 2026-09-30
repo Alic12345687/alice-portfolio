@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans_Lao } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
+import { MotionProvider } from "./context/MotionContext";
 import { ThemeProvider } from "./context/ThemeContext";
 
 const geistSans = Geist({
@@ -23,6 +24,11 @@ const notoSansLao = Noto_Sans_Lao({
 export const metadata: Metadata = {
   title: "Alic Portfolio",
   description: "Minimal, formal portfolio site for Alic",
+  icons: {
+    icon: "/alic.png",
+    shortcut: "/alic.png",
+    apple: "/alic.png",
+  },
 };
 
 export default function RootLayout({
@@ -37,7 +43,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <LanguageProvider>{children}</LanguageProvider>
+          <MotionProvider>
+            <LanguageProvider>{children}</LanguageProvider>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

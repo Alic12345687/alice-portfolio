@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <div className="min-h-screen bg-[#f4f6f8] text-[#0d1b2a] transition-colors duration-500 dark:bg-[#080b14] dark:text-[#edf3f7]">
+      <div className="min-h-screen bg-transparent text-[var(--foreground)] transition-colors duration-500">
         {children}
       </div>
     </ThemeContext.Provider>

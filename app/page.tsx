@@ -6,7 +6,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
-import IntroHero from "./components/IntroHero";
+import DraggableCat from "./components/DraggableCat";
 import ExperienceClient from "./experience/ExperienceClient";
 
 export interface ExperienceItem {
@@ -57,15 +57,15 @@ export default async function Home() {
 
   return (
     <>
-      <IntroHero />
       <main id="portfolio" className="portfolio-main">
         <Navbar />
         <Hero />
-        <About />
-        <ExperienceClient experiences={experiences} />
         <Projects />
+        <About />
+        <ExperienceClient experiences={experiences.slice(0, 2)} />
         <Footer />
       </main>
+      <DraggableCat />
     </>
   );
 }

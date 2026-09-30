@@ -1,4 +1,4 @@
-﻿// app/experience/ExperienceClient.tsx
+// app/experience/ExperienceClient.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -14,32 +14,34 @@ export default function ExperienceClient({
 }: ExperienceClientProps) {
   const { language } = useLanguage();
   return (
-    <section
-      id="experience"
-      className="mx-auto max-w-6xl border-t border-black/5 px-6 py-20 dark:border-white/10 md:px-10"
-    >
-      <div className="mb-10 flex items-end justify-between gap-6">
-        <div>
-          <h2 className="text-sm uppercase tracking-[0.3em] opacity-60">
-            {language === "lo" ? "ປະສົບການ" : "Experience"}
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-6 opacity-65">
-            {language === "lo"
-              ? "ໄລຍະເວລາສັ້ນໆຂອງບົດບາດທີ່ຊ່ວຍຫຼໍ່ຫຼອມວິທີຄິດຂອງຂ້ອຍໃນເລື່ອງ product, systems, ແລະການເຮັດວຽກຮ່ວມກັນ."
-              : "A short timeline of the roles that shaped how I think about product, systems, and collaboration."}
+    <section id="experience" className="section-band experience-band">
+      <div className="section-shell experience-grid">
+        <div className="section-heading sticky-heading">
+          <p className="section-kicker">
+            03 - {language === "lo" ? "ເສັ້ນທາງຈົນເຖິງຕອນນີ້" : "The Journey So Far"}
           </p>
+          <h2>
+            {language === "lo" ? (
+              <>
+                ຮຽນຮູ້ສະເໝີ.
+                <br />
+                ສ້າງສະເໝີ.
+              </>
+            ) : (
+              <>
+                Always learning.
+                <br />
+                Always building.
+              </>
+            )}
+          </h2>
         </div>
-        <p className="hidden text-sm opacity-50 md:block">
-          {language === "lo"
-            ? "ສ້າງດ້ວຍໃຈ ແລະສົ່ງມອບດ້ວຍຄວາມຕັ້ງໃຈ"
-            : "Built with care, shipped with intent"}
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
-        {experiences.map((exp, index) => (
-          <ExperienceCard key={exp.id} exp={exp} index={index} />
-        ))}
+        <div className="timeline-list">
+          {experiences.map((exp, index) => (
+            <ExperienceCard key={exp.id} exp={exp} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -53,28 +55,20 @@ function ExperienceCard({
   index: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
+    <motion.article
+      initial={{ opacity: 0, y: 38 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, delay: (index % 2) * 0.1, ease: "easeOut" }}
-      className="group rounded-2xl border border-black/10 bg-white/35 p-8 transition-colors duration-300 hover:border-black/25 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/25"
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
+      className="timeline-card"
     >
-      <h2 className="mb-2 text-xl font-semibold md:text-2xl">{exp.title}</h2>
-
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
-        <span className="font-bold">{exp.company}</span>
-        {exp.period && (
-          <>
-            <span className="opacity-40">|</span>
-            <span className="italic opacity-70">{exp.period}</span>
-          </>
-        )}
+      <div className="timeline-meta">
+        <span>{exp.period}</span>
+        {index === 0 && <strong>Ongoing</strong>}
       </div>
-
-      <p className="text-sm leading-relaxed opacity-70 md:text-base">
-        {exp.description}
-      </p>
-    </motion.div>
+      <h3>{exp.title}</h3>
+      <h4>{exp.company}</h4>
+      <p>{exp.description}</p>
+    </motion.article>
   );
 }
