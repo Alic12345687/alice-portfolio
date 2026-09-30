@@ -1,13 +1,7 @@
 // app/page.tsx
 import fs from "fs";
 import path from "path";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Footer from "./components/Footer";
-import DraggableCat from "./components/DraggableCat";
-import ExperienceClient from "./experience/ExperienceClient";
+import PortfolioShell from "./components/PortfolioShell";
 
 export interface ExperienceItem {
   id: string;
@@ -55,17 +49,5 @@ export default async function Home() {
   const raw = fs.readFileSync(filePath, "utf-8");
   const experiences = parseExperienceMdx(raw);
 
-  return (
-    <>
-      <main id="portfolio" className="portfolio-main">
-        <Navbar />
-        <Hero />
-        <Projects />
-        <About />
-        <ExperienceClient experiences={experiences.slice(0, 2)} />
-        <Footer />
-      </main>
-      <DraggableCat />
-    </>
-  );
+  return <PortfolioShell experiences={experiences} />;
 }

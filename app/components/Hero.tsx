@@ -1,9 +1,10 @@
 "use client";
 
-import { motion, useSpring } from "framer-motion";
-import { Download, Pause, Play } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Pause, Play } from "lucide-react";
 import Image from "next/image";
 import type { PointerEvent } from "react";
+import { useRef } from "react";
 import {
   SiNextdotjs,
   SiNodedotjs,
@@ -22,41 +23,80 @@ const stack = [
   { name: "PostgreSQL", icon: SiPostgresql, color: "#336791", className: "tech-pg" },
 ];
 
-export default function Hero() {
+const revealItem = {
+  hidden: { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0 },
+};
+
+export default function Hero({ introReady = true }: { introReady?: boolean }) {
   const { language } = useLanguage();
   const { motionEnabled, shouldAnimate, toggleMotion } = useMotionPreferences();
-  const moveX = useSpring(0, { stiffness: 90, damping: 22 });
-  const moveY = useSpring(0, { stiffness: 90, damping: 22 });
+  const prefersReducedMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const frameRef = useRef<number | null>(null);
+  const targetRef = useRef({ x: 0, y: 0 });
+  const motionAllowed = shouldAnimate && !prefersReducedMotion;
+
+  function applyPointerGlow() {
+    frameRef.current = null;
+    const hero = heroRef.current;
+    if (!hero) return;
+    hero.style.setProperty("--hero-glow-x", `${targetRef.current.x}px`);
+    hero.style.setProperty("--hero-glow-y", `${targetRef.current.y}px`);
+  }
 
   function handlePointerMove(event: PointerEvent<HTMLElement>) {
     if (!shouldAnimate || event.pointerType === "touch") return;
     const rect = event.currentTarget.getBoundingClientRect();
-    moveX.set(((event.clientX - rect.left) / rect.width - 0.5) * 16);
-    moveY.set(((event.clientY - rect.top) / rect.height - 0.5) * 12);
+    targetRef.current = {
+      x: ((event.clientX - rect.left) / rect.width - 0.5) * 34,
+      y: ((event.clientY - rect.top) / rect.height - 0.5) * 24,
+    };
+    if (frameRef.current === null) {
+      frameRef.current = requestAnimationFrame(applyPointerGlow);
+    }
   }
 
   function resetPointer() {
-    moveX.set(0);
-    moveY.set(0);
+    targetRef.current = { x: 0, y: 0 };
+    if (frameRef.current === null) {
+      frameRef.current = requestAnimationFrame(applyPointerGlow);
+    }
   }
 
   return (
     <section
+      ref={heroRef}
       className="hero-section"
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
     >
-      <motion.div className="hero-ambient" style={{ x: moveX, y: moveY }} />
+      <div className="hero-ambient" aria-hidden="true" />
       <div className="section-shell hero-grid">
-        <div className="hero-copy">
-          <p className="availability-pill">
+        <motion.div
+          className="hero-copy"
+          initial={motionAllowed ? "hidden" : false}
+          animate={introReady ? "show" : "hidden"}
+          transition={{ staggerChildren: motionAllowed ? 0.1 : 0 }}
+        >
+          <motion.p
+            className="availability-pill"
+            variants={revealItem}
+            transition={{ duration: motionAllowed ? 0.45 : 0, ease: "easeOut" }}
+          >
             <span />
             {language === "lo"
               ? "ພ້ອມຮັບຝຶກງານ ແລະ ວຽກ junior"
               : "Open to internships & junior roles"}
-          </p>
+          </motion.p>
 
-          <h1 className="hero-title">
+          <motion.h1
+            id="portfolio-title"
+            tabIndex={-1}
+            className="hero-title"
+            variants={revealItem}
+            transition={{ duration: motionAllowed ? 0.48 : 0, ease: "easeOut" }}
+          >
             {language === "lo" ? (
               <>
                 ຄິດເປັນລະບົບ.
@@ -68,31 +108,33 @@ export default function Hero() {
                 <span>Practical systems.</span>
               </>
             )}
-          </h1>
+          </motion.h1>
 
-          <div className="hero-intro">
-            <h2>
-              {language === "lo" ? "ສະບາຍດີ, ຂ້ອຍແມ່ນ Alic." : "Hi, I'm Alic."}
-            </h2>
+          <motion.div
+            className="hero-intro"
+            variants={revealItem}
+            transition={{ duration: motionAllowed ? 0.46 : 0, ease: "easeOut" }}
+          >
+            <h2>{language === "lo" ? "ສະບາຍດີ, ຂ້ອຍແມ່ນ Alic." : "Hi, I'm Alic."}</h2>
             <p>
               {language === "lo"
                 ? "Sikunya Phommavanh — ນັກສຶກສາ Computer Science ທີ່ສົນໃຈ backend ແລະລະບົບ web ຢູ່ວຽງຈັນ, ລາວ."
                 : "Sikunya Phommavanh — a Computer Science student interested in backend development and web systems in Vientiane, Laos."}
             </p>
-          </div>
+          </motion.div>
 
-          <div className="hero-actions">
+          <motion.div
+            className="hero-actions"
+            variants={revealItem}
+            transition={{ duration: motionAllowed ? 0.46 : 0, ease: "easeOut" }}
+          >
             <a href="#work" className="button-primary">
               {language === "lo" ? "ເບິ່ງຜົນງານ" : "Explore my work"}
             </a>
             <a href="#contact" className="button-secondary">
               {language === "lo" ? "ຕິດຕໍ່" : "Let's talk"}
             </a>
-            <a href="/cv.jpeg" download className="button-secondary">
-              <Download size={18} />
-              {language === "lo" ? "ດາວໂຫຼດ CV" : "Download CV"}
-            </a>
-          </div>
+          </motion.div>
 
           <button
             type="button"
@@ -107,15 +149,19 @@ export default function Hero() {
                 : "Pause background motion"
               : language === "lo"
                 ? "ເປີດການເຄື່ອນໄຫວ"
-                : "Resume background motion"}
+                : "Start background motion"}
           </button>
-        </div>
+        </motion.div>
 
         <motion.div
           className="profile-stage"
-          initial={false}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.75 }}
+          initial={motionAllowed ? { opacity: 0, y: 28 } : false}
+          animate={{ opacity: introReady ? 1 : 0, y: introReady ? 0 : 28 }}
+          transition={{
+            duration: motionAllowed ? 0.52 : 0,
+            delay: motionAllowed ? 0.42 : 0,
+            ease: "easeOut",
+          }}
         >
           <div className="profile-card">
             <div className="profile-card-top">
@@ -139,15 +185,30 @@ export default function Hero() {
           </div>
 
           <div className="floating-tech" aria-label="Technology stack">
-            {stack.map((item) => {
+            {stack.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div key={item.name} className={`tech-badge ${item.className}`}>
-                  <span>
-                    <Icon color={item.color} />
-                  </span>
-                  {item.name}
-                </div>
+                <motion.div
+                  key={item.name}
+                  className={`tech-reveal ${item.className}`}
+                  initial={motionAllowed ? { opacity: 0, y: 24 } : false}
+                  animate={{
+                    opacity: introReady ? 1 : 0,
+                    y: introReady ? 0 : 24,
+                  }}
+                  transition={{
+                    duration: motionAllowed ? 0.42 : 0,
+                    delay: motionAllowed ? 0.72 + index * 0.1 : 0,
+                    ease: "easeOut",
+                  }}
+                >
+                  <div className="tech-badge">
+                    <span>
+                      <Icon color={item.color} />
+                    </span>
+                    {item.name}
+                  </div>
+                </motion.div>
               );
             })}
           </div>

@@ -40,15 +40,13 @@ export default function ExperienceClient({
         </div>
 
         <div className="timeline-list">
-          <div className="timeline-group-label">
-            {language === "lo" ? "Education" : "Education"}
-          </div>
+          <div className="timeline-group-label">Education</div>
           {education.map((exp, index) => (
             <TimelineCard key={exp.id} exp={exp} index={index} />
           ))}
 
           <div className="experience-confirmation-card">
-            <span>{language === "lo" ? "Experience" : "Experience"}</span>
+            <span>Experience</span>
             <h3>
               {language === "lo"
                 ? "ລາຍລະອຽດການຝຶກງານຍັງຕ້ອງຢືນຢັນ"

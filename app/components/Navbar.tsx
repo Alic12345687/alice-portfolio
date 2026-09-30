@@ -1,15 +1,19 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { useMotionPreferences } from "../context/MotionContext";
 import { useTheme } from "../context/ThemeContext";
 
-export default function Navbar() {
+export default function Navbar({ introReady = true }: { introReady?: boolean }) {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
+  const { shouldAnimate } = useMotionPreferences();
+  const prefersReducedMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
+  const motionAllowed = shouldAnimate && !prefersReducedMotion;
   const links = [
     { id: "work", label: language === "lo" ? "ຜົນງານ" : "Work" },
     { id: "about", label: language === "lo" ? "ກ່ຽວກັບ" : "About" },
@@ -18,7 +22,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="site-nav">
+    <motion.nav
+      className="site-nav"
+      initial={motionAllowed ? { opacity: 0, y: -24 } : false}
+      animate={{ opacity: introReady ? 1 : 0, y: introReady ? 0 : -24 }}
+      transition={{ duration: motionAllowed ? 0.42 : 0, ease: "easeOut" }}
+    >
       <div className="nav-shell">
         <a href="#portfolio" className="brand-mark" aria-label="Back to top">
           alic<span>®</span>
@@ -73,7 +82,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }
 

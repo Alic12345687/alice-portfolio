@@ -1,12 +1,12 @@
 "use client";
 
-import { Download } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
   const { language } = useLanguage();
   return (
     <footer id="contact" className="contact-section">
+      <div className="contact-ambient" aria-hidden="true" />
       <div className="section-shell contact-grid">
         <div>
           <p className="section-kicker">
@@ -30,10 +30,6 @@ export default function Footer() {
             sikunyaphommavanh@gmail.com
           </a>
           <a href="tel:+8562097570974">+856 20 97 570 974</a>
-          <a href="/cv.jpeg" download className="contact-download">
-            <Download size={18} />
-            {language === "lo" ? "ດາວໂຫຼດ CV" : "Download CV"}
-          </a>
         </address>
       </div>
 
