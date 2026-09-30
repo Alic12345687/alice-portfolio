@@ -9,25 +9,25 @@ export default function Projects() {
   const projects = [
     {
       title: "Restaurant Web App",
-      tag: language === "lo" ? "Web Application" : "Web Application",
+      tag: "Web Application",
       note:
         language === "lo"
-          ? "ພັດທະນາ web app ສຳລັບການຈັດການຮ້ານອາຫານ ພ້ອມ backend logic ແລະ workflow ທີ່ນຳໄປໃຊ້ໄດ້ຈິງ."
-          : "Bringing restaurant workflows together with clear backend logic and practical management tools.",
+          ? "ພັດທະນາ web app ສຳລັບການຈັດການຮ້ານອາຫານ ໂດຍເນັ້ນ backend logic ແລະ workflow ທີ່ນຳໄປໃຊ້ງານໄດ້ຈິງ."
+          : "A restaurant management web app focused on clear backend logic and practical management workflows.",
       chips: ["Node.js", "PostgreSQL", "GitHub"],
     },
     {
       title: "Smart Door Lock",
-      tag: language === "lo" ? "IoT / Embedded Systems" : "IoT / Embedded Systems",
+      tag: "IoT / Embedded Systems",
       note:
         language === "lo"
-          ? "ລະບົບການລົງທະບຽນ ແລະກວດສອບ RFID card ເພື່ອປົດລັອກປະຕູຜ່ານ Arduino."
-          : "RFID card registration and verification, connected to secure door-unlocking logic on Arduino.",
+          ? "ລະບົບລົງທະບຽນ ແລະກວດສອບ RFID card ເພື່ອປົດລັອກປະຕູຜ່ານ Arduino."
+          : "RFID card registration and verification connected to secure door-unlocking logic on Arduino.",
       chips: ["Arduino", "RFID", "Access control"],
     },
     {
       title: "Smartphone RC Car",
-      tag: language === "lo" ? "IoT / Robotics" : "IoT / Robotics",
+      tag: "IoT / Robotics",
       note:
         language === "lo"
           ? "ລົດຄວບຄຸມຜ່ານ mobile app ດ້ວຍ Bluetooth ສຳລັບທິດທາງ ແລະຄວາມໄວແບບ real time."
@@ -41,7 +41,9 @@ export default function Projects() {
       <div className="section-shell">
         <div className="section-heading split-heading">
           <div>
-            <p className="section-kicker">01 - {language === "lo" ? "ຜົນງານທີ່ເລືອກ" : "Selected Work"}</p>
+            <p className="section-kicker">
+              01 - {language === "lo" ? "ຜົນງານທີ່ເລືອກ" : "Selected Work"}
+            </p>
             <h2>
               {language === "lo"
                 ? "ຈາກໄອເດຍ ສູ່ສິ່ງທີ່ໃຊ້ງານໄດ້."
@@ -59,18 +61,20 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.article
               key={project.title}
-              initial={{ opacity: 0, y: 42 }}
+              initial={{ opacity: 0, y: 34 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.55, delay: index * 0.08 }}
+              transition={{ duration: 0.5, delay: index * 0.07 }}
               className={index === 0 ? "project-card featured" : "project-card"}
             >
               <div className="project-meta">
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>{project.tag}</span>
               </div>
-              <h3>{project.title}</h3>
-              <p>{project.note}</p>
+              <div className="project-body">
+                <h3>{project.title}</h3>
+                <p>{project.note}</p>
+              </div>
               <div className="chip-row">
                 {project.chips.map((chip) => (
                   <span key={chip}>{chip}</span>
@@ -80,13 +84,19 @@ export default function Projects() {
           ))}
         </div>
 
+        <div className="project-data-note">
+          {language === "lo"
+            ? "ຍັງບໍ່ມີຮູບຜົນງານ ຫຼື URL ຂອງ Live Demo / GitHub / ວິດີໂອ ໃນໂປຣເຈັກນີ້, ຈຶ່ງບໍ່ໄດ້ໃສ່ປຸ່ມຫຼືຮູບປອມ."
+            : "No real project screenshots or Live Demo / GitHub / video URLs were found in this project, so these cards avoid fake media and placeholder buttons."}
+        </div>
+
         <div className="ai-note">
           <div className="ai-icon">
             <Sparkle size={24} />
           </div>
           <h3>
             {language === "lo"
-              ? "ມີ AI ຊ່ວຍຄິດ ແລະ iterate ຢ່າງລະອຽດ."
+              ? "ມີ AI ຊ່ວຍຄິດ. ມີການ iterate ຢ່າງຕັ້ງໃຈ."
               : "A little help from AI. A lot of thoughtful iteration."}
           </h3>
           <p>

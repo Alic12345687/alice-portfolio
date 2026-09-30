@@ -13,7 +13,7 @@ export default function Navbar() {
   const links = [
     { id: "work", label: language === "lo" ? "ຜົນງານ" : "Work" },
     { id: "about", label: language === "lo" ? "ກ່ຽວກັບ" : "About" },
-    { id: "experience", label: language === "lo" ? "ປະສົບການ" : "Experience" },
+    { id: "experience", label: language === "lo" ? "ການສຶກສາ" : "Experience" },
     { id: "contact", label: language === "lo" ? "ຕິດຕໍ່" : "Contact" },
   ];
 
@@ -38,7 +38,15 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            aria-label="Toggle menu"
+            aria-label={
+              menuOpen
+                ? language === "lo"
+                  ? "ປິດເມນູ"
+                  : "Close menu"
+                : language === "lo"
+                  ? "ເປີດເມນູ"
+                  : "Open menu"
+            }
             className="icon-button menu-button"
           >
             {menuOpen ? <X size={19} /> : <Menu size={19} />}
@@ -80,7 +88,7 @@ function LanguageToggle({
     <button
       type="button"
       onClick={toggleLanguage}
-      aria-label="Toggle language"
+      aria-label={language === "lo" ? "ປ່ຽນເປັນພາສາອັງກິດ" : "Switch to Lao"}
       className="language-toggle"
     >
       <span className={language === "en" ? "active" : ""}>EN</span>
@@ -101,7 +109,7 @@ function ThemeToggle({
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label="Toggle dark mode"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className="icon-button theme-button"
     >
       {isDark ? <Sun size={19} /> : <Moon size={19} />}

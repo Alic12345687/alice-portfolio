@@ -25,9 +25,12 @@ export const metadata: Metadata = {
   title: "Alic Portfolio",
   description: "Minimal, formal portfolio site for Alic",
   icons: {
-    icon: "/alic.png",
-    shortcut: "/alic.png",
-    apple: "/alic.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png", sizes: "256x256" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
 };
 

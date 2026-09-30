@@ -23,18 +23,21 @@ export default function About() {
     },
     {
       label: language === "lo" ? "ການສຶກສາ" : "Education",
-      value:
-        language === "lo"
-          ? "Computer Science, Soutsaka Institute of Technology"
-          : "Computer Science, Soutsaka Institute of Technology",
+      value: "Computer Science, Soutsaka Institute of Technology",
     },
     {
       label: language === "lo" ? "ຈຸດແຂງ" : "Strengths",
-      value: language === "lo" ? "Backend logic ແລະ teamwork" : "Backend logic & teamwork",
+      value:
+        language === "lo"
+          ? "Backend logic ແລະ teamwork"
+          : "Backend logic & teamwork",
     },
     {
       label: language === "lo" ? "ພ້ອມຮັບ" : "Open to",
-      value: language === "lo" ? "ຝຶກງານ ແລະ ວຽກ junior" : "Internships & junior roles",
+      value:
+        language === "lo"
+          ? "ຝຶກງານ ແລະ ວຽກ junior"
+          : "Internships & junior roles",
     },
   ];
 
@@ -42,13 +45,15 @@ export default function About() {
     <section id="about" className="section-band about-band">
       <div className="section-shell about-grid">
         <motion.div
-          initial={{ opacity: 0, y: 42 }}
+          initial={{ opacity: 0, y: 34 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="about-copy"
         >
-          <p className="section-kicker">02 - {language === "lo" ? "ກ່ຽວກັບຂ້ອຍ" : "A Little About Me"}</p>
+          <p className="section-kicker">
+            02 - {language === "lo" ? "ກ່ຽວກັບຂ້ອຍ" : "A Little About Me"}
+          </p>
           <h2>
             {language === "lo" ? (
               <>
@@ -82,10 +87,10 @@ export default function About() {
         </motion.div>
 
         <motion.aside
-          initial={{ opacity: 0, y: 42 }}
+          initial={{ opacity: 0, y: 34 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.6, delay: 0.08 }}
+          transition={{ duration: 0.5, delay: 0.07 }}
           className="about-card"
         >
           <div className="about-card-head">

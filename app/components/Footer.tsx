@@ -1,5 +1,6 @@
 "use client";
 
+import { Download } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
@@ -8,7 +9,9 @@ export default function Footer() {
     <footer id="contact" className="contact-section">
       <div className="section-shell contact-grid">
         <div>
-          <p className="section-kicker">04 - {language === "lo" ? "ຕິດຕໍ່" : "Let's Connect"}</p>
+          <p className="section-kicker">
+            04 - {language === "lo" ? "ຕິດຕໍ່" : "Let's Connect"}
+          </p>
           <h2>
             {language === "lo"
               ? "ເລື່ອງດີໆ ເລີ່ມຈາກການສົນທະນາ."
@@ -27,6 +30,10 @@ export default function Footer() {
             sikunyaphommavanh@gmail.com
           </a>
           <a href="tel:+8562097570974">+856 20 97 570 974</a>
+          <a href="/cv.jpeg" download className="contact-download">
+            <Download size={18} />
+            {language === "lo" ? "ດາວໂຫຼດ CV" : "Download CV"}
+          </a>
         </address>
       </div>
 
